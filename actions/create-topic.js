@@ -1,5 +1,7 @@
 "use server";
 
-export const createTopic = async (params) => {
+const createTopic = async (params) => {
   // TODO: revalidate the hoome page.
 };
+
+export default createTopic;
