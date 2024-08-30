@@ -1,4 +1,4 @@
-export default paths = {
+const paths = {
   homePath() {
     return `/`;
   },
@@ -12,3 +12,5 @@ export default paths = {
     return `/topics/${topicSlug}/posts/${postId}`;
   },
 };
+
+export default paths;
