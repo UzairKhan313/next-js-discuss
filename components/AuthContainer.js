@@ -36,22 +36,13 @@ const AuthContainer = () => {
     );
   } else {
     return (
-      <>
-        <NavbarItem>
-          <form action={actions.signInWithGithub}>
-            <Button color="secondary" type="submit" variant="bordered">
-              Sign In With Github
-            </Button>
-          </form>
-        </NavbarItem>
-        <NavbarItem>
-          <form action={actions.signInWithGithub}>
-            <Button color="primary" type="submit" variant="flat">
-              Sign Up With Github
-            </Button>
-          </form>
-        </NavbarItem>
-      </>
+      <NavbarItem>
+        <form action={actions.signInWithGithub}>
+          <Button color="secondary" type="submit" variant="bordered">
+            Sign In With Github
+          </Button>
+        </form>
+      </NavbarItem>
     );
   }
 };

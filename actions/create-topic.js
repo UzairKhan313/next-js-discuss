@@ -21,6 +21,7 @@ const createTopicSchema = z.object({
 });
 
 const createTopic = async (fromState, formData) => {
+  await new Promise((res) => setTimeout(res, 3000));
   const result = createTopicSchema.safeParse({
     name: formData.get("name"),
     description: formData.get("description"),
