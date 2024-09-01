@@ -8,14 +8,14 @@ const PostDetailsPage = ({ params }) => {
   const { slug, postId } = params;
   return (
     <div className="space-y-3">
-      <Link
-        className="underline decoration-solid"
+      {/* <Link
+        className="cursor-pointer  p-3 border-2 border-b-gray-500 rounded-md"
         href={paths.topicShowPath(slug)}
       >
         Back to {slug}
-      </Link>
-      {/* <PostShow /> */}
-      {/* <CommentCreateForm postId={postId} startOpen /> */}
+      </Link> */}
+      <PostShow postId={postId} />
+      <CommentCreateForm postId={postId} startOpen />
       {/* <CommentList comments={comments} /> */}
     </div>
   );

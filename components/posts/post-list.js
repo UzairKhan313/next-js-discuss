@@ -1,9 +1,14 @@
-import { Post, User, Topic } from "@prisma/client";
-
 import PostItem from "./post-item";
 
 // TODO: Get list of posts into this component somehow
-export default function PostList() {
+
+export default async function PostList({ fetchData }) {
+  const posts = await fetchData();
+
+  if (posts.length === 0) {
+    return <h2>No post found in this topic</h2>;
+  }
+
   const renderedPosts = posts.map((post) => {
     const topicSlug = post.topic.slug;
 
@@ -13,5 +18,5 @@ export default function PostList() {
     return <PostItem post={post} />;
   });
 
-  return <div className="space-y-2">{renderedPosts}</div>;
+  return <div className="space-y-2 mt-4">{renderedPosts}</div>;
 }
