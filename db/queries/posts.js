@@ -11,4 +11,12 @@ export const fetchPostByTopicSlug = (slug) => {
   });
 };
 
-export const fetchTopPost = () => {};
+export const fetchTopPost = () => {
+  return db.post.findMany({
+    include: {
+      topic: { select: { slug: true } },
+      user: { select: { name: true } },
+      _count: { select: { comments: true } },
+    },
+  });
+};
