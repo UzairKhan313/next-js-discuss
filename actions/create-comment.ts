@@ -2,19 +2,27 @@
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-import { auth } from "@/utils/auth";
+import { auth } from "@/auth";
 import { db } from "@/db";
-import paths from "@/utils/path";
+import paths from "@/paths";
 
 const createCommentSchema = z.object({
   content: z.string().min(3),
 });
 
-export default async function createComment(
-  { postId, parentId },
-  formState,
-  formData
-) {
+interface CreateCommentFormState {
+  errors: {
+    content?: string[];
+    _form?: string[];
+  };
+  success?: boolean;
+}
+
+export async function createComment(
+  { postId, parentId }: { postId: string; parentId?: string },
+  formState: CreateCommentFormState,
+  formData: FormData
+): Promise<CreateCommentFormState> {
   const result = createCommentSchema.safeParse({
     content: formData.get("content"),
   });
@@ -71,7 +79,7 @@ export default async function createComment(
     };
   }
 
-  revalidatePath(paths.postShowPath(topic.slug, postId));
+  revalidatePath(paths.postShow(topic.slug, postId));
   return {
     errors: {},
     success: true,

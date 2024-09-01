@@ -1,8 +1,9 @@
-import Link from "next/link";
+// import Link from "next/link";
 import PostShow from "@/components/posts/post-show";
 import CommentList from "@/components/comments/comment-list";
 import CommentCreateForm from "@/components/comments/comment-create-form";
-import paths from "@/utils/path";
+import { fetchCommentsWithPostId } from "@/db/queries/comments";
+// import paths from "@/utils/path";
 
 const PostDetailsPage = ({ params }) => {
   const { slug, postId } = params;
@@ -16,7 +17,7 @@ const PostDetailsPage = ({ params }) => {
       </Link> */}
       <PostShow postId={postId} />
       <CommentCreateForm postId={postId} startOpen />
-      {/* <CommentList comments={comments} /> */}
+      <CommentList fetchData={() => fetchCommentsWithPostId(postId)} />
     </div>
   );
 };
